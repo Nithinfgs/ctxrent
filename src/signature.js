@@ -1,5 +1,3 @@
-import { relative, isAbsolute } from 'node:path';
-
 const SUBCOMMAND_TOOLS = new Set([
   'git', 'npm', 'pnpm', 'yarn', 'bun', 'npx', 'go', 'cargo', 'docker', 'kubectl', 'gh',
   'make', 'pip', 'uv', 'poetry', 'dotnet', 'gradle', 'mvn', 'terraform', 'brew',
@@ -34,16 +32,17 @@ export function commandKey(command) {
 }
 
 /**
+ * Strip the project directory from a path. Done on normalized strings rather than with
+ * `node:path` because a transcript may have been recorded on a different OS than it is read on.
  * @param {unknown} filePath
  * @param {string|null} cwd
  */
 function shortPath(filePath, cwd) {
   if (typeof filePath !== 'string') return '(unknown)';
-  if (cwd && isAbsolute(filePath)) {
-    const rel = relative(cwd, filePath);
-    if (rel && !rel.startsWith('..')) return rel;
-  }
-  return filePath;
+  const file = filePath.replace(/\\/g, '/');
+  const root = cwd ? cwd.replace(/\\/g, '/').replace(/\/+$/, '') : '';
+  if (root && file.toLowerCase().startsWith(`${root.toLowerCase()}/`)) return file.slice(root.length + 1);
+  return file;
 }
 
 /**

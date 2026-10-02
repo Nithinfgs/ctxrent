@@ -143,6 +143,10 @@ test('signature shortens paths relative to the project and redaction hides detai
     signature('WebFetch', { url: 'https://docs.example.com/x/y' }, null),
     'WebFetch: docs.example.com',
   );
+  assert.equal(
+    signature('Read', { file_path: 'C:\\work\\api\\src\\a.ts' }, 'C:\\work\\api'),
+    'Read: src/a.ts',
+  );
   assert.equal(signature('mcp__x__y', {}, null), 'mcp__x__y');
   assert.equal(redactLabel('Bash: npm run build'), 'Bash: npm');
   assert.match(redactLabel('Read: src/secret.ts'), /^Read: #[0-9a-f]{6}$/);
