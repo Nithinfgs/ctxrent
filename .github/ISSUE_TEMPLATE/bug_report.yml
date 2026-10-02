@@ -1,0 +1,23 @@
+name: Bug report
+description: Something is wrong or the numbers look off
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you run, what did you expect, what did you get?
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: Redacted output
+      description: Output of `ctxrent --redact --json` (or a redacted transcript snippet). Do not paste real prompts or code.
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: '`ctxrent --version`, `node -v`, OS, and Claude Code version if known'
+    validations:
+      required: true
