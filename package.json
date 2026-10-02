@@ -1,0 +1,59 @@
+{
+  "name": "ctxrent",
+  "version": "0.1.0",
+  "description": "See which tool outputs in your AI coding sessions pay the most rent in the context window. Local, zero-dependency, reads Claude Code transcripts.",
+  "keywords": [
+    "claude-code",
+    "context-window",
+    "tokens",
+    "coding-agents",
+    "cli",
+    "developer-tools",
+    "observability"
+  ],
+  "homepage": "https://github.com/Nithinfgs/ctxrent#readme",
+  "bugs": "https://github.com/Nithinfgs/ctxrent/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nithinfgs/ctxrent.git"
+  },
+  "license": "MIT",
+  "author": "Nithin Selvaraj",
+  "type": "module",
+  "bin": {
+    "ctxrent": "bin/ctxrent.js"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node bin/ctxrent.js",
+    "demo": "node bin/ctxrent.js demo",
+    "test": "node --test \"test/*.test.js\"",
+    "lint": "eslint .",
+    "typecheck": "tsc -p jsconfig.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "build:assets": "node scripts/render-svg.js",
+    "check": "npm run lint && npm run typecheck && npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.5.0"
+  }
+}
